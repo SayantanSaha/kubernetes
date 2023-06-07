@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:  
+  labels:
+    app: go-app
+  name: go-app
+  namespace: default
+  resourceVersion: "14191"
+  uid: d09f1f4c-1440-415a-81db-3e9de89fd531
+  annotations:
+    traefik.ingress.kubernetes.io/rule-type: PathPrefixStrip
+    traefik.ingress.kubernetes.io/rule-value: "/go"
+spec:
+  clusterIP: 10.43.26.40
+  clusterIPs:
+  - 10.43.26.40
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 80-3333
+    port: 80
+    protocol: TCP
+    targetPort: 3333
+  selector:
+    app: go-app
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

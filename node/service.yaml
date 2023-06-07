@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2023-06-07T17:06:38Z"
+  labels:
+    app: node-app
+  name: node-app
+  namespace: default
+  resourceVersion: "14308"
+  uid: 6c7d079b-ce3d-433c-8ef8-8ca78765b353
+  annotations:
+    traefik.ingress.kubernetes.io/rule-type: PathPrefixStrip
+    traefik.ingress.kubernetes.io/rule-value: "/node"
+spec:
+  clusterIP: 10.43.72.95
+  clusterIPs:
+  - 10.43.72.95
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 80-8000
+    port: 80
+    protocol: TCP
+    targetPort: 8000
+  selector:
+    app: node-app
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
